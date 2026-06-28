@@ -4,6 +4,8 @@ A self-hosted reverse proxy that enforces rate limiting on your upstream APIs. S
 
 > **Status:** Early development. Core proxy and rate limiting engine are functional. REST API and dashboard are not yet built.
 
+**Documentation:** [openward.kousic.in](https://openward.kousic.in)
+
 ---
 
 ## How it works

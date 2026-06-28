@@ -14,31 +14,27 @@ const (
 )
 
 type Project struct {
-	ID        string
-	Name      string
-	APIKey    string
-	Enabled   bool
-	Upstream  string
-	Algorithm RateLimitAlgorithm
+	ID        string             `json:"id"`
+	Name      string             `json:"name"`
+	APIKey    string             `json:"api_key"`
+	Enabled   bool               `json:"enabled"`
+	Upstream  string             `json:"upstream"`
+	Algorithm RateLimitAlgorithm `json:"algorithm"`
 
 	// Fixed window
-	// limit = max requests, window = duration of the window
-	FWLimit  *int
-	FWWindow *time.Duration
+	FWLimit  *int           `json:"fw_limit"`
+	FWWindow *time.Duration `json:"fw_window"`
 
 	// Sliding window
-	// limit = max requests, window = duration of the window
-	SWLimit  *int
-	SWWindow *time.Duration
+	SWLimit  *int           `json:"sw_limit"`
+	SWWindow *time.Duration `json:"sw_window"`
 
-	// Token bucket:
-	// TBCapacity     = max burst size (bucket size)
-	// TBRefillRate   = tokens added per second (long-term average rate)
-	TBCapacity   *int
-	TBRefillRate *float64 // tokens/sec, e.g. 100.0 = 100 req/s sustained
+	// Token bucket
+	TBCapacity   *int     `json:"tb_capacity"`
+	TBRefillRate *float64 `json:"tb_refill_rate"`
 
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 func (p *Project) FixedWindowConfig() (*FixedWindowConfig, error) {
@@ -71,7 +67,6 @@ func (p *Project) TokenBucketConfig() (*TokenBucketConfig, error) {
 	return &TokenBucketConfig{Capacity: *p.TBCapacity, RefillRate: *p.TBRefillRate}, nil
 }
 
-// Typed config structs — used by the limiter logic, not stored directly
 type FixedWindowConfig struct {
 	Limit  int
 	Window time.Duration

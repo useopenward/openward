@@ -17,7 +17,7 @@ func main() {
 	}
 	defer database.Close()
 
-	limit := 9999999
+	limit := 10000000000
 	window := 10 * time.Second
 
 	p := &core.Project{

@@ -103,7 +103,7 @@ func ListProjects(db Reader) ([]*core.Project, error) {
 	}
 	defer rows.Close()
 
-	var projects []*core.Project
+	projects := make([]*core.Project, 0)
 	for rows.Next() {
 		p, err := scanProject(rows)
 		if err != nil {

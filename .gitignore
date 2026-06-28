@@ -3,3 +3,7 @@
 *.db-shm
 
 results/
+internal/api/dist
+
+.env
+ui/.vscode/
