@@ -13,6 +13,8 @@ import (
 	"github.com/useopenward/openward/internal/proxy"
 )
 
+var Version = "dev"
+
 func main() {
 	loadDotEnv(".env")
 
